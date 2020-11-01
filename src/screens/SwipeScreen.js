@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
   card: {
     flexBasis: "90%",
-    backgroundColor: "green",
+    // backgroundColor: "green",
     // padding: 15,
     marginTop: 20,
     marginHorizontal: 10,

@@ -5,40 +5,78 @@ import {
   View,
   StyleSheet,
   Dimensions,
+  Pressable,
 } from "react-native";
 
 const SwipeCard = (props) => {
   return (
     <ImageBackground
       source={{
-        uri:
-          "https://bigpicture.ru/wp-content/uploads/2020/01/71715608_728411400955857_1867320004081534638_n-728x800.jpg",
-        // "https://img.icons8.com/pastel-glyph/2x/person-male.png",
+        uri: props.images[props.numberOfImage],
       }}
       style={styles.image}
     >
-      <Text style={styles.info}>Information</Text>
+      <View style={styles.changeImage}>
+        <Pressable
+          style={styles.pressLeft}
+          onPress={() => {
+            if (props.numberOfImage - 1 < 0) return null;
+            props.setImage(props.numberOfImage - 1);
+          }}
+        ></Pressable>
+        <Pressable
+          style={styles.pressRight}
+          onPress={() => {
+            if (props.numberOfImage + 1 >= props.lengthOfImages) return null;
+            props.setImage(props.numberOfImage + 1);
+          }}
+        ></Pressable>
+      </View>
+      <View style={styles.infoBlock}>
+        <Text style={styles.info}>Information</Text>
+      </View>
     </ImageBackground>
   );
 };
-
-const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   image: {
     flex: 1,
     flexDirection: "column",
 
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
+    alignItems: "stretch",
+    justifyContent: "center",
+    alignContent: "stretch",
     borderColor: "black",
 
     borderRadius: 15,
     overflow: "hidden",
-    padding: 10,
+  },
+  changeImage: {
+    flexDirection: "row",
+    flexBasis: "85%",
+    // backgroundColor: "green",
+    height: 1,
+    width: "100%",
+  },
+  pressLeft: {
+    flexBasis: "50%",
+    // backgroundColor: "red",
+    height: "100%",
+  },
+  pressRight: {
+    flexBasis: "50%",
+    // backgroundColor: "blue",
+    height: "100%",
+  },
+  infoBlock: {
+    flexBasis: "15%",
+    width: "100%",
+    backgroundColor: "gray",
   },
   info: {
-    padding: 0,
+    margin: 10,
+    color: "#000",
   },
 });
 
