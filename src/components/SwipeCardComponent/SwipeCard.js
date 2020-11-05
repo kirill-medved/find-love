@@ -1,10 +1,10 @@
 import React from "react";
 import {
   ImageBackground,
+  Image,
   Text,
   View,
   StyleSheet,
-  Dimensions,
   Pressable,
 } from "react-native";
 
@@ -23,14 +23,24 @@ const SwipeCard = (props) => {
             if (props.numberOfImage - 1 < 0) return null;
             props.setImage(props.numberOfImage - 1);
           }}
-        ></Pressable>
+        >
+          <Image
+            source={require("../../../common/images/actions/LIKE.png")}
+            style={{ width: 190, height: 150 }}
+          />
+        </Pressable>
         <Pressable
           style={styles.pressRight}
           onPress={() => {
             if (props.numberOfImage + 1 >= props.lengthOfImages) return null;
             props.setImage(props.numberOfImage + 1);
           }}
-        ></Pressable>
+        >
+          <Image
+            source={require("../../../common/images/actions/nope.gif")}
+            style={{ width: 190, height: 200 }}
+          />
+        </Pressable>
       </View>
       <View style={styles.infoBlock}>
         <Text style={styles.info}>Information</Text>
@@ -41,14 +51,13 @@ const SwipeCard = (props) => {
 
 const styles = StyleSheet.create({
   image: {
-    flex: 1,
+    position: "relative",
+    flexBasis: "100%",
     flexDirection: "column",
-
     alignItems: "stretch",
     justifyContent: "center",
     alignContent: "stretch",
     borderColor: "black",
-
     borderRadius: 15,
     overflow: "hidden",
   },
